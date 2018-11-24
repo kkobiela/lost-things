@@ -939,3 +939,7 @@ ASALocalRun/
 .localhistory/
 
 # End of https://www.gitignore.io/api/dart,swift,xcode,android,intellij,cocoapods,aspnetcore,objective-c,visualstudio,androidstudio,visualstudiocode
+
+# Custom
+
+Generated.xcconfig
