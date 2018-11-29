@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lost_things/ad_list.dart';
+import 'package:lost_things/ad_list/ad_list.dart';
 
 class HomePageBody extends StatelessWidget {
   @override
