@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lost_things/models/ad_list_item.dart';
 
 class AdListTile extends StatelessWidget {
+  final AdListItem ad;
+
+  AdListTile({this.ad});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -15,16 +20,20 @@ class AdListTile extends StatelessWidget {
             decoration: new BoxDecoration(
                 border: new Border(
                     right: new BorderSide(width: 1, color: Colors.black))),
-            child: Icon(Icons.photo, color: Colors.black),
+            child: new Image.network(
+              this.ad.thumbnail,
+              height: 72,
+              width: 72,
+            ),
           ),
           title: Text(
-            "Zagubione klucze",
+            this.ad.title,
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           subtitle: Row(
             children: <Widget>[
               Icon(Icons.place, color: Colors.black),
-              Text(" Gdańsk", style: TextStyle(color: Colors.black))
+              Text(this.ad.location, style: TextStyle(color: Colors.black))
             ],
           ),
         ),
