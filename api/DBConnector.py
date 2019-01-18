@@ -5,4 +5,4 @@ from  flask import Flask, request, g
 
 @app.before_request
 def before_request():
-    g.db = sqlite3.connect(app.config['LostThingsDb.db'])
+    g.db = sqlite3.connect('LostThingsDb.db', timeout=10)
