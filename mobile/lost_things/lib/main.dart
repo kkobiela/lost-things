@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lost_things/home_page.dart';
+import 'package:lost_things/login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,6 +15,6 @@ class MyApp extends StatelessWidget {
             primaryTextTheme: TextTheme(
                 title: TextStyle(color: Colors.black, fontFamily: "Aveny")),
             textTheme: TextTheme(title: TextStyle(color: Colors.black))),
-        home: HomePage());
+        home: LoginPage());
   }
 }
