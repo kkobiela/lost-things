@@ -8,6 +8,9 @@ import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
 import os
+import glob
+from PIL import Image
+import random
 
 
 @app.route('/things/<int:id>', methods=['DELETE'])
@@ -97,9 +100,11 @@ def thing_create():
         error = json.dumps({'error': 'Missing field/s (user_id, name, description, location, contact, thumbnail)'})
         return json_response(error, 400)
 
-    convert_and_save(data.get('thumbnail'), data.get('name'))
+    rand = random.randint(0, 9999)
+    convert_and_save(data.get('thumbnail'), data.get('name')+rand.__str__())
 
-    name = ('{0}.png'.format(data.get('name')))
+    name = ('{0}.png'.format(data.get('name')+rand.__str__() ))
+    nameThumbnail = ('{0}thumbnail.png'.format(data.get('name')+rand.__str__()))
 
     bucket = storage.bucket()
     blob = bucket.blob(name)
@@ -107,9 +112,22 @@ def thing_create():
     with open(name, 'rb') as my_file:
         blob.upload_from_file(my_file)
 
+    im = Image.open(name)
+    im.thumbnail((128, 128), Image.ANTIALIAS)
+    im.save(nameThumbnail, "PNG")
+
+    blob = bucket.blob(nameThumbnail)
+
+    with open(nameThumbnail, 'rb') as my_file:
+        blob.upload_from_file(my_file)
+
+    uploadedthumbBlob = bucket.get_blob(nameThumbnail)
+    uploadedthumbBlob.make_public()
+
     uploadedBlob = bucket.get_blob(name)
     uploadedBlob.make_public()
     os.remove(name)
+    os.remove(nameThumbnail)
 
     params = [{
         'user_id': data['user_id'],
@@ -118,13 +136,14 @@ def thing_create():
         'location': data['location'],
         'contact': data['contact'],
         'add_date': datetime.datetime.now(),
-        'thumbnail': uploadedBlob.public_url,
+        'photo': uploadedBlob.public_url,
+        'thumbnail' : uploadedthumbBlob.public_url,
         "returned": 0
     }]
 
     query = ('INSERT INTO ITEM ("USER_ID", "NAME", "DESCRIPTION", "LOCATION", '
-             '"CONTACT", "ADD_DATE", "THUMBNAIL", "IS_RETURNED") '
-             'VALUES (:user_id, :namee, :description, :location, :contact, :add_date, :thumbnail, :returned);')
+             '"CONTACT", "ADD_DATE", "PHOTO", "IS_RETURNED", "THUMBNAIL") '
+             'VALUES (:user_id, :namee, :description, :location, :contact, :add_date, :photo, :returned , :thumbnail);')
 
     g.db.execute(query, params[0])
     g.db.commit()
@@ -142,6 +161,7 @@ def thing_create():
         'add_date': row[7],
         'thumbnail': row[8],
         'is_returned': row[9],
+        'photo': row[10]
     } for row in cursor.fetchall()]
 
     return json_response(json.dumps(items), status=201)
@@ -170,6 +190,32 @@ def getByName(name):
     } for row in cursor.fetchall()]
 
     return json_response(json.dumps(items))
+
+
+@app.route('/things/key=<string:key>')
+def getByKeyworld(key):
+
+    params = {
+        'key': '%'+key+'%',
+    }
+
+    cursor = g.db.execute('SELECT * FROM ITEM WHERE LOCATION LIKE :key OR NAME LIKE :key;', params)
+
+    items = [{
+        'id': row[0],
+        'user_id': row[1],
+        'name': row[2],
+        'description': row[3],
+        'location': row[4],
+        'contact': row[5],
+        'found_date': row[6],
+        'add_date': row[7],
+        'thumbnail': row[8],
+        'is_returned': row[9],
+    } for row in cursor.fetchall()]
+
+    return json_response(json.dumps(items))
+
 
 
 @app.route('/things/city=<string:city>')
