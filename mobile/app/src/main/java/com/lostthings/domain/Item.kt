@@ -11,4 +11,9 @@ data class Item(
     val name: String,
     val thumbnail: String?,
     val userId: String
-)
+) {
+
+    fun contains(text: String): Boolean {
+        return name.toLowerCase().contains(text.toLowerCase())
+    }
+}
