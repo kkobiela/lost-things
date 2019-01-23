@@ -9,11 +9,11 @@ import kotlinx.android.synthetic.main.item_item.view.*
 
 class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(item: Item, onItemClick: (Item) -> Unit) {
+    fun bind(item: Item, onItemClick: (View, Item) -> Unit) {
         with(view) {
             loadImage(item)
             itemItemNameTv.text = item.name
-            setOnClickListener { onItemClick(item) }
+            setOnClickListener { onItemClick(view.itemItemPhotoIv, item) }
         }
     }
 

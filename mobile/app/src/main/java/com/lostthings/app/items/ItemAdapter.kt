@@ -1,12 +1,13 @@
 package com.lostthings.app.items
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lostthings.R
 import com.lostthings.app.util.extension.inflate
 import com.lostthings.domain.Item
 
-class ItemAdapter(private val onItemClick: (Item) -> Unit) : RecyclerView.Adapter<ItemViewHolder>() {
+class ItemAdapter(private val onItemClick: (View, Item) -> Unit) : RecyclerView.Adapter<ItemViewHolder>() {
 
     var items = mutableListOf<Item>()
         private set

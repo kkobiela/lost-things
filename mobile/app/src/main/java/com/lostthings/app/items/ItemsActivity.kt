@@ -1,5 +1,6 @@
 package com.lostthings.app.items
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Menu
@@ -7,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lostthings.R
 import com.lostthings.app.base.BaseActivity
+import com.lostthings.app.details.DetailsActivity
 import com.lostthings.domain.Item
 import kotlinx.android.synthetic.main.activity_items.*
 
@@ -19,15 +21,22 @@ class ItemsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items)
+        loadingDialog.show()
         setupItemsRv()
         repository.getItems({
             items = it
             adapter.setData(items)
-        }, { it.toString() })
+            loadingDialog.dismiss()
+        }, {
+            loadingDialog.dismiss()
+        })
     }
 
     private fun setupItemsRv() {
-        adapter = ItemAdapter {}
+        adapter = ItemAdapter { _, item ->
+            val intent = Intent(this, DetailsActivity::class.java).apply { putExtra("item", item) }
+            startActivity(intent)
+        }
         itemsItemsRv.layoutManager = GridLayoutManager(this, calculateNumberOfColumns())
         itemsItemsRv.adapter = adapter
     }
