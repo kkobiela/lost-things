@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <FrameLayout
+            android:id="@+id/itemItemFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <View android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/item_item_background"/>
+
+        <ImageView
+                android:id="@+id/itemItemPhotoIv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_item_placeholder"/>
+    </FrameLayout>
+
+    <TextView
+            android:id="@+id/itemItemNameTv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:paddingStart="@dimen/medium_padding"
+            android:paddingEnd="@dimen/medium_padding"
+            android:paddingBottom="@dimen/medium_padding"
+            android:paddingTop="@dimen/medium_padding"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/item_item_name"
+            app:layout_constraintBottom_toBottomOf="@id/itemItemFrame"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Nutella Pie"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
