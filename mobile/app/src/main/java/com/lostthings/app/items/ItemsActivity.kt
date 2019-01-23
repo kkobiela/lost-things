@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.lostthings.R
 import com.lostthings.app.base.BaseActivity
 import com.lostthings.app.details.DetailsActivity
+import com.lostthings.app.profile.ProfileActivity
 import com.lostthings.domain.Item
 import kotlinx.android.synthetic.main.activity_items.*
-
 
 class ItemsActivity : BaseActivity() {
 
@@ -23,19 +23,31 @@ class ItemsActivity : BaseActivity() {
         setContentView(R.layout.activity_items)
         loadingDialog.show()
         setupItemsRv()
+        getItems()
+        setupBottomNavigation()
+    }
+
+    private fun getItems() {
         repository.getItems({
-            items = it
+            items = it.filterNot { item -> item.isReturned }
             adapter.setData(items)
             loadingDialog.dismiss()
         }, {
             loadingDialog.dismiss()
         })
+    }
+
+    private fun setupBottomNavigation() {
         bottomNavigation.selectedItemId = R.id.bottom_navigation_items
-        bottomNavigation.setOnNavigationItemReselectedListener {
-            when (it.itemId) {
-                R.id.bottom_navigation_items -> return@setOnNavigationItemReselectedListener
-                R.id.bottom_navigation_add -> return@setOnNavigationItemReselectedListener
-                R.id.bottom_navigation_profile -> return@setOnNavigationItemReselectedListener
+        bottomNavigation.setOnNavigationItemSelectedListener {
+            return@setOnNavigationItemSelectedListener when (it.itemId) {
+                R.id.bottom_navigation_items -> false
+                R.id.bottom_navigation_add -> false
+                R.id.bottom_navigation_profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    false
+                }
+                else -> false
             }
         }
     }

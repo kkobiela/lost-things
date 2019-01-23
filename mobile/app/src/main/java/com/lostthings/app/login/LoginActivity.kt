@@ -46,9 +46,12 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun onLoggedIn(googleSignInAccount: GoogleSignInAccount) {
-        val intent = Intent(this, ItemsActivity::class.java)
-        intent.putExtra("account", googleSignInAccount)
-        startActivity(intent)
+        with(googleSignInAccount) {
+            repository.profilePhotoUrl = photoUrl.toString()
+            repository.profileName = displayName ?: ""
+            repository.profileEmail = email ?: ""
+        }
+        startActivity(Intent(this, ItemsActivity::class.java))
         finish()
     }
 
