@@ -30,6 +30,14 @@ class ItemsActivity : BaseActivity() {
         }, {
             loadingDialog.dismiss()
         })
+        bottomNavigation.selectedItemId = R.id.bottom_navigation_items
+        bottomNavigation.setOnNavigationItemReselectedListener {
+            when (it.itemId) {
+                R.id.bottom_navigation_items -> return@setOnNavigationItemReselectedListener
+                R.id.bottom_navigation_add -> return@setOnNavigationItemReselectedListener
+                R.id.bottom_navigation_profile -> return@setOnNavigationItemReselectedListener
+            }
+        }
     }
 
     private fun setupItemsRv() {
