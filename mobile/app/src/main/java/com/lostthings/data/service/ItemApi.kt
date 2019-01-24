@@ -4,10 +4,7 @@ import com.lostthings.data.service.model.ItemModel
 import com.lostthings.data.service.model.ItemReturnModel
 import com.lostthings.data.service.model.ItemToAddModel
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ItemApi {
 
@@ -17,6 +14,7 @@ interface ItemApi {
     @POST("/things")
     fun addItem(@Body itemToAddModel: ItemToAddModel): Single<ItemModel>
 
+    @Headers("Content-Type: application/json")
     @PATCH("/things")
-    fun changeItem(@Body itemModel: ItemModel): Single<ItemModel>
+    fun changeItem(@Body itemModel: ItemModel): Single<List<ItemModel>>
 }

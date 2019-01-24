@@ -8,6 +8,7 @@ import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lostthings.R
+import com.lostthings.app.add.AddItemActivity
 import com.lostthings.app.base.BaseActivity
 import com.lostthings.app.details.DetailsActivity
 import com.lostthings.app.profile.ProfileActivity
@@ -46,7 +47,10 @@ class ItemsActivity : BaseActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener {
             return@setOnNavigationItemSelectedListener when (it.itemId) {
                 R.id.bottom_navigation_items -> false
-                R.id.bottom_navigation_add -> false
+                R.id.bottom_navigation_add -> {
+                    startActivityWithoutStack(Intent(this, AddItemActivity::class.java))
+                    false
+                }
                 R.id.bottom_navigation_profile -> {
                     startActivityWithoutStack(Intent(this, ProfileActivity::class.java))
                     false

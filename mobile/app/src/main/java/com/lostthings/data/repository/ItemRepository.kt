@@ -38,9 +38,8 @@ class ItemRepository(private val itemApi: ItemApi, private val userSession: User
             itemApi.changeItem(ItemMapper.map(item))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ onSuccess(ItemMapper.map(it)) },
+                .subscribe({ onSuccess(ItemMapper.map(it.component1())) },
                     {
-                        //TODO: Problem occurs
                         it.toString()
                     })
         )

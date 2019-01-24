@@ -44,7 +44,7 @@ object ItemMapper {
         model.addDate,
         model.contact,
         model.description,
-        model.foundDate,
+        model.foundDate ?: model.addDate,
         model.id,
         1,
         model.location,

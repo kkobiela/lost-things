@@ -8,6 +8,7 @@ import android.util.DisplayMetrics
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lostthings.R
+import com.lostthings.app.add.AddItemActivity
 import com.lostthings.app.base.BaseActivity
 import com.lostthings.app.items.ItemsActivity
 import com.lostthings.domain.Item
@@ -32,8 +33,7 @@ class ProfileActivity : BaseActivity() {
 
     private fun getItems() {
         repository.getItems({
-            // TODO: Filter items from user
-            items = it
+            items = it.filter { it.userId == repository.profileEmail }
             adapter.setData(items)
             loadingDialog.dismiss()
         }, {
@@ -80,7 +80,10 @@ class ProfileActivity : BaseActivity() {
                     startActivityWithoutStack(Intent(this, ItemsActivity::class.java))
                     false
                 }
-                R.id.bottom_navigation_add -> false
+                R.id.bottom_navigation_add -> {
+                    startActivityWithoutStack(Intent(this, AddItemActivity::class.java))
+                    false
+                }
                 R.id.bottom_navigation_profile -> false
                 else -> false
             }

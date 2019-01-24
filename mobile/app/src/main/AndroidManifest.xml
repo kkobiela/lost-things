@@ -13,6 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".app.add.AddItemActivity">
+        </activity>
         <activity android:name=".app.profile.ProfileActivity">
         </activity>
         <activity android:name=".app.login.LoginActivity">
