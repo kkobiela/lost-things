@@ -11,8 +11,9 @@ interface ItemApi {
     @GET("/things")
     fun getItems(): Single<List<ItemModel>>
 
+    @Headers("Content-Type: application/json")
     @POST("/things")
-    fun addItem(@Body itemToAddModel: ItemToAddModel): Single<ItemModel>
+    fun addItem(@Body itemToAddModel: ItemToAddModel): Single<List<ItemModel>>
 
     @Headers("Content-Type: application/json")
     @PATCH("/things")

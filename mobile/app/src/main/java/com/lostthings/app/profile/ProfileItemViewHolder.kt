@@ -16,6 +16,8 @@ class ProfileItemViewHolder(private val view: View) : RecyclerView.ViewHolder(vi
             if (!item.isReturned) {
                 itemItemToReturnIv.visibility = View.VISIBLE
                 itemItemToReturnIv.setOnClickListener { onItemClick(view.itemItemPhotoIv, item) }
+            } else {
+                itemItemToReturnIv.visibility = View.GONE
             }
         }
     }

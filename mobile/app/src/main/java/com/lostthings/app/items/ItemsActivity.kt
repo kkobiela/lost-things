@@ -24,12 +24,16 @@ class ItemsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items)
         setupItemsRv()
-        getItems()
+        loadingDialog.show()
         setupBottomNavigation()
     }
 
+    override fun onStart() {
+        super.onStart()
+        getItems()
+    }
+
     private fun getItems() {
-        loadingDialog.show()
         Log.d("ItemsActivity", "Getting items")
         repository.getItems({
             Log.d("ItemsActivity", "Getting succeed")

@@ -13,20 +13,25 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".app.add.AddItemActivity">
+        <activity android:name=".app.add.AddItemActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".app.profile.ProfileActivity">
+        <activity android:name=".app.profile.ProfileActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".app.login.LoginActivity">
+        <activity android:name=".app.login.LoginActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".app.details.DetailsActivity">
+        <activity android:name=".app.details.DetailsActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".app.items.ItemsActivity">
+        <activity android:name=".app.items.ItemsActivity"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 

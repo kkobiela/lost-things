@@ -7,6 +7,7 @@ import com.lostthings.app.base.BaseActivity
 import com.lostthings.domain.Item
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
+import java.text.SimpleDateFormat
 
 class DetailsActivity : BaseActivity() {
 
@@ -22,13 +23,19 @@ class DetailsActivity : BaseActivity() {
         detailsName.text = item.name
         detailsDescription.text = item.description
         detailsLocation.text = item.location
+        var format = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+        val date = format.parse(item.addDate)
+        format = SimpleDateFormat("dd.MM.yyyy hh:mm ")
+        detailsDateAdded.text = format.format(date)
         if (item.foundDate.isNullOrBlank()) {
             detailsDateFound.visibility = View.GONE
             detailsDateFoundLabel.visibility = View.GONE
         } else {
-            detailsDateFound.text = item.foundDate
+            var format = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+            val date = format.parse(item.foundDate)
+            format = SimpleDateFormat("dd.MM.yyyy hh:mm ")
+            detailsDateFound.text = format.format(date)
         }
-        detailsDateAdded.text = item.addDate
         detailsContact.text = item.contact
     }
 }

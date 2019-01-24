@@ -2,6 +2,7 @@
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <LinearLayout
@@ -21,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/small_padding"
+                android:textColor="@color/colorAccent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:text="Nazwa"/>
 
@@ -28,12 +30,14 @@
                 android:id="@+id/detailsName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 android:padding="@dimen/medium_padding"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:padding="@dimen/small_padding"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:text="Opis"/>
@@ -42,12 +46,14 @@
                 android:id="@+id/detailsDescription"
                 android:layout_width="match_parent"
                 android:padding="@dimen/medium_padding"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:padding="@dimen/small_padding"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:text="Lokalizacja"/>
@@ -56,6 +62,7 @@
                 android:id="@+id/detailsLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 android:padding="@dimen/medium_padding"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
@@ -64,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/small_padding"
+                android:textColor="@color/colorAccent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:text="Data znalezienia"/>
 
@@ -71,6 +79,7 @@
                 android:id="@+id/detailsDateFound"
                 android:layout_width="match_parent"
                 android:padding="@dimen/medium_padding"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
@@ -78,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/small_padding"
+                android:textColor="@color/colorAccent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:text="Data dodania"/>
 
@@ -85,6 +95,7 @@
                 android:id="@+id/detailsDateAdded"
                 android:layout_width="match_parent"
                 android:padding="@dimen/medium_padding"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
@@ -92,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/small_padding"
+                android:textColor="@color/colorAccent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:text="Kontakt"/>
 
@@ -99,6 +111,7 @@
                 android:id="@+id/detailsContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 android:padding="@dimen/medium_padding"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
     </LinearLayout>
