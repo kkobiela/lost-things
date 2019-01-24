@@ -33,6 +33,19 @@ class ItemRepository(private val itemApi: ItemApi, private val userSession: User
         )
     }
 
+    fun returnItem(item: Item, onSuccess: (Item) -> Unit) {
+        disposables.add(
+            itemApi.changeItem(ItemMapper.map(item))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ onSuccess(ItemMapper.map(it)) },
+                    {
+                        //TODO: Problem occurs
+                        it.toString()
+                    })
+        )
+    }
+
     var profileName: String
         get() = userSession.profileName
         set(value) {

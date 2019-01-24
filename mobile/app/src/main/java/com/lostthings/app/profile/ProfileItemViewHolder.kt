@@ -13,7 +13,10 @@ class ProfileItemViewHolder(private val view: View) : RecyclerView.ViewHolder(vi
         with(view) {
             loadImage(item)
             itemItemNameTv.text = item.name
-            setOnClickListener { onItemClick(view.itemItemPhotoIv, item) }
+            if (!item.isReturned) {
+                itemItemToReturnIv.visibility = View.VISIBLE
+                itemItemToReturnIv.setOnClickListener { onItemClick(view.itemItemPhotoIv, item) }
+            }
         }
     }
 

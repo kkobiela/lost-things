@@ -43,7 +43,7 @@ class ProfileActivity : BaseActivity() {
 
     private fun setupItemsRv() {
         adapter = ProfileItemAdapter { _, item ->
-            // TODO: Check item as returned
+            repository.returnItem(item) { getItems() }
         }
         profileItemsRv.layoutManager = GridLayoutManager(this, calculateNumberOfColumns())
         profileItemsRv.adapter = adapter

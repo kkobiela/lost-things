@@ -39,4 +39,17 @@ object ItemMapper {
         model.thumbnail,
         model.userId
     )
+
+    fun map(model: Item) = ItemModel(
+        model.addDate,
+        model.contact,
+        model.description,
+        model.foundDate,
+        model.id,
+        1,
+        model.location,
+        model.name,
+        model.thumbnail,
+        model.userId
+    )
 }
