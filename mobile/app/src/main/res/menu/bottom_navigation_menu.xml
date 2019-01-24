@@ -3,7 +3,7 @@
     <item
             android:id="@+id/bottom_navigation_items"
             android:icon="@drawable/ic_items"
-            android:title="Zagubione" />
+            android:title="Odnalezione" />
 
     <item
             android:id="@+id/bottom_navigation_add"

@@ -77,7 +77,7 @@ class ProfileActivity : BaseActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener {
             return@setOnNavigationItemSelectedListener when (it.itemId) {
                 R.id.bottom_navigation_items -> {
-                    startActivity(Intent(this, ItemsActivity::class.java))
+                    startActivityWithoutStack(Intent(this, ItemsActivity::class.java))
                     false
                 }
                 R.id.bottom_navigation_add -> false

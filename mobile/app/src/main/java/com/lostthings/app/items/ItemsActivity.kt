@@ -3,6 +3,7 @@ package com.lostthings.app.items
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,18 +22,21 @@ class ItemsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items)
-        loadingDialog.show()
         setupItemsRv()
         getItems()
         setupBottomNavigation()
     }
 
     private fun getItems() {
+        loadingDialog.show()
+        Log.d("ItemsActivity", "Getting items")
         repository.getItems({
+            Log.d("ItemsActivity", "Getting succeed")
             items = it.filterNot { item -> item.isReturned }
             adapter.setData(items)
             loadingDialog.dismiss()
         }, {
+            Log.d("ItemsActivity", "Getting failed")
             loadingDialog.dismiss()
         })
     }
@@ -44,7 +48,7 @@ class ItemsActivity : BaseActivity() {
                 R.id.bottom_navigation_items -> false
                 R.id.bottom_navigation_add -> false
                 R.id.bottom_navigation_profile -> {
-                    startActivity(Intent(this, ProfileActivity::class.java))
+                    startActivityWithoutStack(Intent(this, ProfileActivity::class.java))
                     false
                 }
                 else -> false

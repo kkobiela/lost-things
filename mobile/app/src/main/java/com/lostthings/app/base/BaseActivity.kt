@@ -1,5 +1,6 @@
 package com.lostthings.app.base
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,8 +19,8 @@ abstract class BaseActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
-    override fun onStop() {
-        super.onStop()
-        repository.disposables.clear()
+    fun startActivityWithoutStack(intent: Intent) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 }
