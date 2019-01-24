@@ -37,7 +37,7 @@ class ItemsActivity : BaseActivity() {
         Log.d("ItemsActivity", "Getting items")
         repository.getItems({
             Log.d("ItemsActivity", "Getting succeed")
-            items = it.filterNot { item -> item.isReturned }
+            items = it.filterNot { item -> item.isReturned }.reversed()
             adapter.setData(items)
             loadingDialog.dismiss()
         }, {

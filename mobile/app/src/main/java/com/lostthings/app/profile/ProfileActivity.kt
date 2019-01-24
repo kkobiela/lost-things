@@ -33,7 +33,7 @@ class ProfileActivity : BaseActivity() {
 
     private fun getItems() {
         repository.getItems({
-            items = it.filter { it.userId == repository.profileEmail }
+            items = it.filter { it.userId == repository.profileEmail }.reversed()
             adapter.setData(items)
             loadingDialog.dismiss()
         }, {
