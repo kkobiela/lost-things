@@ -83,6 +83,7 @@ class AddItemActivity : BaseActivity() {
             ) {
                 Toast.makeText(this, "Uzupełnij wszystkie pola i dodaj zdjęcie!", Toast.LENGTH_LONG).show()
             } else {
+                loadingDialog.show()
                 val itemToAdd = ItemToAdd(
                     contactTv.text.toString(),
                     descriptionTv.text.toString(),
@@ -92,7 +93,11 @@ class AddItemActivity : BaseActivity() {
                     repository.profileEmail
                 )
                 repository.addItem(
-                    itemToAdd, { finish() }, {
+                    itemToAdd, {
+                        loadingDialog.dismiss()
+                        finish()
+                    }, {
+                        loadingDialog.dismiss()
                         Toast.makeText(this, "Coś poszło nie tak, spróbuj ponownie", Toast.LENGTH_LONG).show()
                     })
             }
