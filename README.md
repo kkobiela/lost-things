@@ -16,6 +16,21 @@ Application is available for Android platform.
 
 <img src="/screenshots/04.png" width="280" height="591" alt="Fourth screenshot"> <img src="/screenshots/05.png" width="280" height="591" alt="Fifth screenshot">
 
+### Technologies
+
+#### Backend
+
+* Python
+* Flask
+* SQLite
+* Firebase Database
+
+#### Mobile
+* Kotlin
+* Retrofit
+* RxKotlin
+* Koin
+
 ## License
 ```
  Copyright 2019
